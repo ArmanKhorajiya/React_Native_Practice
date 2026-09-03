@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 type StudentProps = {
   id: number;
@@ -10,8 +10,8 @@ type StudentProps = {
 
 function Student({ id, name, age, course, city }: StudentProps) {
   return (
-    <View style={{ flex: 1, backgroundColor: 'white', padding: 30 }}>
-      <Text style={{ color: 'black', fontSize: 18 }}>
+    <View style={{ padding: 15, marginTop:15, borderWidth:4, borderColor:'gray',borderRadius:50 }}>
+      <Text style={{ color: 'white', fontSize: 18 }}>
         Student: {id}{'\n'}
         Name: {name}{'\n'}
         Age: {age}{'\n'}
@@ -24,8 +24,8 @@ function Student({ id, name, age, course, city }: StudentProps) {
 
 function Students(){
   return(
-    <View style={{ flex: 1, backgroundColor: 'white', padding: 30 }}>
-      <Text style={{ color: 'black', fontSize: 28 }}>
+    <View>
+      <Text style={{ color: 'white', fontSize: 28,backgroundColor:'green',borderRadius:30 }}>
         Students:
       </Text>
 
@@ -50,13 +50,36 @@ function Students(){
         course="10th"
         city="Wankaner"
       />
+      <Student
+        id={4}
+        name="Anim"
+        age={14}
+        course="10th"
+        city="Wankaner"
+      />
+      <Student
+        id={5}
+        name="Arhan"
+        age={14}
+        course="10th"
+        city="Wankaner"
+      />
+      <Student
+        id={6}
+        name="Anik"
+        age={20}
+        course="JOB"
+        city="Wankaner"
+      />
     </View>
   )
 }
 export default function HomeScreen() {
   return (
-    <View style={{ flex: 1, backgroundColor: 'white', padding: 30, }}>
-      <Students/>
+    <View style={{ flex: 1, backgroundColor: 'black', padding: 30, borderRadius:20, }}>
+      <ScrollView>
+        <Students/>
+      </ScrollView>
     </View>
   );
 }
