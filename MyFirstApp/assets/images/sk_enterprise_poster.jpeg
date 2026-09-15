@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SK Enterprise — Poster</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
+
+  :root{
+    --void:#0a0905;
+    --panel:#15130d;
+    --panel-2:#1d1a12;
+    --rust:#b5551f;
+    --rust-deep:#6e2c10;
+    --gold:#e2ab45;
+    --gold-dim:#a67a2e;
+    --steel:#83898c;
+    --steel-light:#c3c8ca;
+    --paper:#efe6d3;
+    --paper-dim:#c9bfa8;
+    --danger:#8f2617;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html,body{
+    background:#000;
+    display:flex;
+    justify-content:center;
+    padding:32px 0;
+  }
+
+  .poster{
+    position:relative;
+    width:1080px;
+    height:1620px;
+    background:
+      radial-gradient(ellipse 900px 700px at 50% 8%, #2a2015 0%, transparent 60%),
+      linear-gradient(180deg, #0d0b07 0%, #100e09 30%, #0a0905 65%, #050403 100%);
+    overflow:hidden;
+    font-family:'Rajdhani', sans-serif;
+    color:var(--paper);
+    box-shadow:0 0 120px rgba(0,0,0,0.9);
+  }
+
+  /* ---------- texture layers ---------- */
+  .grain{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, transparent 1px, transparent 2px, rgba(255,255,255,0.015) 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+    pointer-events:none;
+    z-index:50;
+  }
+  .vignette{
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 800px 1100px at 50% 45%, transparent 40%, rgba(0,0,0,0.55) 85%, rgba(0,0,0,0.85) 100%);
+    pointer-events:none;
+    z-index:49;
+  }
+  .light-shaft{
+    position:absolute;
+    top:-120px; left:50%;
+    width:1400px; height:900px;
+    transform:translateX(-50%) rotate(0deg);
+    background:conic-gradient(from 200deg at 50% 0%,
+      transparent 0deg, rgba(226,171,69,0.10) 8deg, transparent 20deg,
+      transparent 60deg, rgba(226,171,69,0.06) 66deg, transparent 80deg,
+      transparent 300deg, rgba(226,171,69,0.08) 308deg, transparent 320deg);
+    pointer-events:none;
+    z-index:2;
+  }
+  .rust-streak{
+    position:absolute;
+    pointer-events:none;
+    opacity:0.5;
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- top strip ---------- */
+  .top-strip{
+    position:relative; z-index:10;
+    padding:38px 60px 0 60px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .top-strip .tag{
+    font-family:'Oswald', sans-serif;
+    font-size:15px; letter-spacing:2px; font-weight:500;
+    color:var(--steel-light);
+    border-left:3px solid var(--rust);
+    padding-left:10px;
+  }
+  .top-strip .est{
+    font-family:'Oswald', sans-serif;
+    font-size:15px; letter-spacing:2px; font-weight:500;
+    color:var(--gold-dim);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; z-index:10;
+    text-align:center;
+    padding-top:56px;
+  }
+  .hero .kicker{
+    font-family:'Rajdhani'; font-weight:600; font-size:22px;
+    letter-spacing:3px; color:var(--paper-dim);
+  }
+  .brand{
+    position:relative;
+    font-family:'Anton', sans-serif;
+    font-size:172px;
+    line-height:0.92;
+    letter-spacing:2px;
+    color:var(--paper);
+    text-shadow:
+      0 2px 0 #000,
+      0 8px 18px rgba(0,0,0,0.7),
+      0 0 60px rgba(226,171,69,0.18);
+    -webkit-background-clip:text;
+    background-image:linear-gradient(180deg, #f5ecd9 0%, #e7d9b6 32%, #cbb27e 48%, #efe6d3 55%, #b98a4a 100%);
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-top:6px;
+  }
+  .brand .ent{
+    display:block;
+    font-size:96px;
+    letter-spacing:22px;
+    margin-top:-6px;
+    background-image:linear-gradient(180deg, #d99a45 0%, #b5551f 55%, #7a3212 100%);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero-rule{
+    width:340px; height:3px; margin:18px auto 0 auto;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .subhead{
+    margin-top:20px;
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    font-size:26px;
+    letter-spacing:1px;
+    color:var(--steel-light);
+  }
+  .subhead span{ color:var(--gold); padding:0 10px; }
+
+  /* ---------- icon collage ---------- */
+  .collage{
+    position:relative; z-index:10;
+    height:430px;
+    margin:38px 40px 0 40px;
+    border-top:1px solid rgba(226,171,69,0.25);
+    border-bottom:1px solid rgba(226,171,69,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+  }
+  .collage-bg{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 700px 300px at 50% 100%, rgba(181,85,31,0.16), transparent 70%),
+      linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 100%);
+    z-index:-1;
+  }
+  .icon-block{
+    display:flex; flex-direction:column; align-items:center;
+    width:180px;
+  }
+  .icon-block svg{ width:120px; height:120px; filter:drop-shadow(0 10px 14px rgba(0,0,0,0.6)); }
+  .icon-block .label{
+    margin-top:14px;
+    font-family:'Oswald'; font-weight:600; font-size:16px;
+    letter-spacing:1.5px; color:var(--paper-dim);
+    text-align:center;
+  }
+  .center-tractor svg{ width:230px; height:180px; }
+
+  /* ---------- lines ---------- */
+  .lines{
+    position:relative; z-index:10;
+    text-align:center;
+    margin-top:44px;
+    padding:0 70px;
+  }
+  .line-main{
+    font-family:'Anton'; font-size:44px; line-height:1.15;
+    color:var(--paper);
+    text-shadow:0 4px 10px rgba(0,0,0,0.6);
+  }
+  .line-main .accent{ color:var(--gold); }
+  .line-sub{
+    margin-top:16px;
+    font-family:'Rajdhani'; font-weight:600; font-size:24px;
+    color:var(--steel-light);
+    letter-spacing:0.5px;
+  }
+  .line-sub .accent{ color:var(--rust); font-weight:700; }
+
+  /* ---------- CTA ---------- */
+  .cta-wrap{
+    position:relative; z-index:10;
+    display:flex; justify-content:center;
+    margin-top:40px;
+  }
+  .cta{
+    font-family:'Oswald'; font-weight:600; font-size:28px; letter-spacing:3px;
+    color:#171208;
+    background:linear-gradient(180deg, #f0c368 0%, #d99a3b 55%, #a8681f 100%);
+    padding:20px 56px;
+    border-radius:2px;
+    box-shadow:0 10px 26px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.4);
+    position:relative;
+  }
+  .cta:before, .cta:after{
+    content:"";
+    position:absolute; top:50%; width:10px; height:10px;
+    background:var(--rust-deep); border-radius:50%;
+    transform:translateY(-50%);
+    box-shadow:inset 0 1px 2px rgba(0,0,0,0.6);
+  }
+  .cta:before{ left:14px; }
+  .cta:after{ right:14px; }
+
+  /* ---------- footer info ---------- */
+  .footer{
+    position:absolute; left:0; right:0; bottom:0;
+    z-index:10;
+    background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 30%, #070604 100%);
+    padding:54px 60px 40px 60px;
+  }
+  .footer-rule{
+    height:1px; width:100%;
+    background:linear-gradient(90deg, transparent, rgba(226,171,69,0.4), transparent);
+    margin-bottom:26px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-end;
+  }
+  .footer-item{ display:flex; align-items:center; gap:14px; max-width:340px; }
+  .footer-item svg{ width:34px; height:34px; flex-shrink:0; }
+  .footer-item .fl-label{
+    font-family:'Oswald'; font-weight:500; font-size:13px; letter-spacing:2px;
+    color:var(--gold-dim);
+  }
+  .footer-item .fl-value{
+    font-family:'Rajdhani'; font-weight:600; font-size:21px;
+    color:var(--paper);
+    line-height:1.25;
+  }
+  .footer-brandmark{
+    font-family:'Anton'; font-size:30px; letter-spacing:1px; color:var(--paper-dim); opacity:0.55;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <div class="light-shaft"></div>
+
+  <!-- top strip -->
+  <div class="top-strip">
+    <div class="tag">HARDWARE &amp; AGRI SUPPLIES</div>
+    <div class="est">24 YEARS OF TRUST</div>
+  </div>
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="brand">
+      SK
+      <span class="ent">ENTERPRISE</span>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="subhead">HARDWARE <span>|</span> MACHINERY <span>|</span> NUT-BOLT <span>|</span> PIPELINES <span>|</span> FARMING ITEMS</div>
+  </div>
+
+  <!-- icon collage -->
+  <div class="collage">
+    <div class="collage-bg"></div>
+
+    <div class="icon-block">
+      <svg viewBox="0 0 120 120" fill="none">
+        <polygon points="60,8 100,30 100,90 60,112 20,90 20,30" fill="#2a2620" stroke="#c3c8ca" stroke-width="3"/>
+        <circle cx="60" cy="60" r="24" fill="#0f0d0a" stroke="#e2ab45" stroke-width="3"/>
+        <circle cx="60" cy="60" r="9" fill="#0a0905"/>
+      </svg>
+      <div class="label">NUT &amp; BOLT</div>
+    </div>
+
+    <div class="icon-block">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M30 20 C18 20 10 30 10 42 C10 50 14 57 20 61 L52 93 C55 96 60 96 63 93 L73 83 C76 80 76 75 73 72 L41 40 C45 34 45 24 39 18 C36 15 32 20 30 20 Z" fill="#8a8f92" stroke="#161310" stroke-width="2"/>
+        <path d="M78 70 L108 100 C112 104 112 110 108 114 C104 118 98 118 94 114 L64 84" fill="none" stroke="#b5551f" stroke-width="10" stroke-linecap="round"/>
+      </svg>
+      <div class="label">METAL TOOLS</div>
+    </div>
+
+    <div class="icon-block center-tractor">
+      <svg viewBox="0 0 260 200" fill="none">
+        <ellipse cx="130" cy="185" rx="120" ry="8" fill="#000" opacity="0.4"/>
+        <rect x="120" y="60" width="70" height="42" rx="4" fill="#7a3212" stroke="#e2ab45" stroke-width="3"/>
+        <rect x="130" y="30" width="42" height="34" rx="3" fill="#9c4a1c" stroke="#e2ab45" stroke-width="3"/>
+        <rect x="60" y="82" width="70" height="26" rx="3" fill="#5c2a10" stroke="#83898c" stroke-width="2"/>
+        <circle cx="80" cy="150" r="38" fill="#0f0d0a" stroke="#c3c8ca" stroke-width="5"/>
+        <circle cx="80" cy="150" r="14" fill="#3a3630"/>
+        <circle cx="190" cy="150" r="24" fill="#0f0d0a" stroke="#c3c8ca" stroke-width="5"/>
+        <circle cx="190" cy="150" r="9" fill="#3a3630"/>
+        <rect x="150" y="10" width="6" height="30" fill="#83898c"/>
+      </svg>
+      <div class="label">FARM MACHINERY</div>
+    </div>
+
+    <div class="icon-block">
+      <svg viewBox="0 0 120 120" fill="none">
+        <rect x="10" y="50" width="100" height="20" rx="4" fill="#6e6a5f" stroke="#161310" stroke-width="2"/>
+        <rect x="10" y="50" width="100" height="7" fill="#8f8b7c"/>
+        <circle cx="34" cy="60" r="17" fill="none" stroke="#e2ab45" stroke-width="6"/>
+        <circle cx="86" cy="60" r="17" fill="none" stroke="#e2ab45" stroke-width="6"/>
+        <rect x="52" y="40" width="16" height="40" fill="#4a463d" stroke="#161310" stroke-width="2"/>
+      </svg>
+      <div class="label">PIPE FITTINGS</div>
+    </div>
+
+    <div class="icon-block">
+      <svg viewBox="0 0 120 120" fill="none">
+        <path d="M60 15 C60 15 30 45 30 68 C30 86 44 100 60 100 C76 100 90 86 90 68 C90 45 60 15 60 15 Z" fill="#3a4a24" stroke="#83898c" stroke-width="2"/>
+        <path d="M60 100 L60 115 M60 100 L48 112 M60 100 L72 112" stroke="#c9bfa8" stroke-width="3" stroke-linecap="round"/>
+        <path d="M60 25 C55 45 55 65 60 90" stroke="#e2ab45" stroke-width="2" opacity="0.6"/>
+      </svg>
+      <div class="label">CROP &amp; FIELD</div>
+    </div>
+  </div>
+
+  <!-- lines -->
+  <div class="lines">
+    <div class="line-main">Kheti ho ya machinery,<br><span class="accent">har zaroorat ka samaan ek hi jagah!</span></div>
+    <div class="line-sub">Nut-Bolt se lekar <span class="accent">Pipeline</span> aur <span class="accent">Machinery Items</span> tak — Sab Kuch Milega!</div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <div class="cta">VISIT SK ENTERPRISE TODAY</div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="footer-rule"></div>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" stroke="#e2ab45" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke="#e2ab45" stroke-width="1.6"/></svg>
+        <div>
+          <div class="fl-label">SHOP ADDRESS</div>
+          <div class="fl-value">Momin Sheri, Pratap Road, Wankaner, Gujarat</div>
+        </div>
+      </div>
+      <div></div>
+      <div class="footer-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 1c1 3 3 5 6 6l1-2 5 2v2c0 1-1 2-2 2C10 19 4 13 4 5z" stroke="#e2ab45" stroke-width="1.6"/></svg>
+        <div>
+          <div class="fl-label">CONTACT</div>
+          <div class="fl-value">99259 53798, 97252 75186</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+</body>
+</html>
