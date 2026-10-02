@@ -21,7 +21,7 @@ const Counter = () => {
         style={{
           color: "black",
           fontSize: 100,
-          textAlign:'center'
+          textAlign: "center",
         }}
       >
         {count}
