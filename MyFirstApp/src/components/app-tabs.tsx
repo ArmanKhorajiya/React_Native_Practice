@@ -1,39 +1,36 @@
-import { NativeTabs } from "expo-router/unstable-native-tabs";
-import { useColorScheme } from "react-native";
-
-import { Colors } from "@/constants/theme";
-
-export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === "unspecified" ? "light" : scheme];
+// Counter:-
+import { useState } from "react";
+import { Button, View, Text } from "react-native";
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  const incr = () => {
+    setCount(count + 1);
+  };
+  const decr = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+  const reset = () => {
+    setCount(0);
+  };
 
   return (
-    <NativeTabs
-      backgroundColor={colors.background}
-      indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}
-    >
-      <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/tabIcons/home.png")}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="settings">
-        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/tabIcons/settings.png")}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon
-          src={require("@/assets/images/tabIcons/explore.png")}
-          renderingMode="template"
-        />
-      </NativeTabs.Trigger>
-    </NativeTabs>
+    <View>
+      <Text
+        style={{
+          color: "black",
+          fontSize: 100,
+          textAlign:'center'
+        }}
+      >
+        {count}
+      </Text>
+      <Button title="Increase" onPress={incr} />
+      <Button title="Decrease" onPress={decr} />
+      <Button title="Reset" onPress={reset} />
+    </View>
   );
-}
+};
+export default Counter;
+

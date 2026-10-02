@@ -10,7 +10,7 @@ interface Product {
 const Setting = () => {
   const [data, setData] = useState<Product[]>([]);
 
-  useEffect(() => {
+  useEffect(() => { 
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
@@ -40,24 +40,23 @@ export default Setting;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: "green",
+    backgroundColor: "fontWeight",
   },
 
   item: {
-    backgroundColor: "white",
+    backgroundColor: "darkorange",
     padding: 15,
-    marginBottom: 10,
-    borderRadius: 8,
-  },
-
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
+    marginBottom: 20,
+    borderRadius: 100,
   },
 
   price: {
     fontSize: 14,
     marginTop: 5,
+  },
+
+  title: {
+    fontSize: 25,
+    fontWeight: "condensedBold",
   },
 });
