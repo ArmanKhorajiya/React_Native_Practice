@@ -35,39 +35,39 @@
 // export default Counter;
 
 // Fetch Data using API:-
-import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+// import { useEffect, useState } from "react";
+// import { View, Text } from "react-native";
 
-const ApiFetch = () => {
-  const [users, setUsers] = useState([]);
+// const ApiFetch = () => {
+//   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+//   useEffect(() => {
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setUsers(data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   }, []);
 
-  return (
-    <View>
-      {users.map((user) => (
-        <Text
-          style={{
-            color: "white",
-            backgroundColor: "darkgreen",
-            fontSize: 30,
-          }}
-          key={user.id}
-        >
-          {user.name}
-        </Text>
-      ))}
-    </View>
-  );
-};
+//   return (
+//     <View>
+//       {users.map((user) => (
+//         <Text
+//           style={{
+//             color: "white",
+//             backgroundColor: "darkgreen",
+//             fontSize: 30,
+//           }}
+//           key={user.id}
+//         >
+//           {user.name}
+//         </Text>
+//       ))}
+//     </View>
+//   );
+// };
 
-export default ApiFetch;
+// export default ApiFetch;
