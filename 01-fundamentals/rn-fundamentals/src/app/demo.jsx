@@ -1,7 +1,9 @@
 import { FlatList, Text, View } from "react-native";
 const arr = [
-  { id: 1, name: "Arman" },
-  { id: 2, name: "Nazil" },
+  { id: 1, name: "A" },
+  { id: 2, name: "B" },
+  { id: 3, name: "C" },
+  { id: 4, name: "D" },
 ];
 export default function Demo() {
   return (
@@ -25,12 +27,20 @@ export default function Demo() {
       </Text>
       <FlatList
         data={arr}
-        keyExtractor={(ele)=>{ele.id}}
-        renderItem={({item})=><Text style={{
-          textAlign:"center",
-          color:"darkorange",
-          fontSize:40,
-        }}>{item.name}</Text>}
+        keyExtractor={(ele) => {
+          ele.id;
+        }}
+        renderItem={({ item }) => (
+          <Text
+            style={{
+              textAlign: "center",
+              color: "darkorange",
+              fontSize: 40,
+            }}
+          >
+            {item.name}
+          </Text>
+        )}
       />
     </View>
   );
