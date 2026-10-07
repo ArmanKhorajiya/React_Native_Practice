@@ -28,7 +28,7 @@ export default function Demo() {
       <FlatList
         data={arr}
         keyExtractor={(ele) => {
-          ele.id;
+          ele.id.toString();
         }}
         renderItem={({ item }) => (
           <Text
