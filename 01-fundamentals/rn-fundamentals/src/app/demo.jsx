@@ -1,34 +1,36 @@
 import { FlatList, Text, View } from "react-native";
-
 const arr = [
   { id: 1, name: "Arman" },
   { id: 2, name: "Nazil" },
 ];
-export default function App() {
+export default function Demo() {
   return (
     <View
       style={{
-        justifyContent: "center",
-        backgroundColor: "darkgreen",
+        backgroundColor: "black",
         flex: 1,
+        justifyContent: "center",
       }}
     >
       <Text
         style={{
           textAlign: "center",
-          color: "white",
-          fontSize: 30,
-          alignItems: "center",
+          fontSize: 50,
+          color: "orange",
+          justifyContent: "center",
+          flex: 1,
         }}
       >
-        Arman
+        FlatList Array Example:-
       </Text>
       <FlatList
         data={arr}
-        keyExtractor={(ele) => ele.id.toString()}
-        renderItem={({ item }) => (
-          <Text style={{ fontSize: 40, textAlign: "center" }}>{item.name}</Text>
-        )}
+        keyExtractor={(ele)=>{ele.id}}
+        renderItem={({item})=><Text style={{
+          textAlign:"center",
+          color:"darkorange",
+          fontSize:40,
+        }}>{item.name}</Text>}
       />
     </View>
   );
