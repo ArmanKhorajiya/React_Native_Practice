@@ -42,7 +42,7 @@ export default function Counter() {
           fontSize: 50,
         }}
       >
-        {count === 0 ? "Counter is empty" : "Counter is running"}
+        {count === 0 ? "Counter is empty" : "Counter is running..."}
       </Text>
       <Button onPress={incr} title="Add One" />
       <Button onPress={decr} title="Remove One" />
