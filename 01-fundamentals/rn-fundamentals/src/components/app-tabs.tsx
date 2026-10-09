@@ -30,8 +30,8 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="demo">
-        <NativeTabs.Trigger.Label>Demo</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="flatlist">
+        <NativeTabs.Trigger.Label>Flatlist</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require("@/assets/images/tabIcons/explore.png")}
           renderingMode="template"
