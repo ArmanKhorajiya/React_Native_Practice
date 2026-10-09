@@ -41,6 +41,7 @@ export default function FlatListExample() {
               fontSize: 40,
               borderWidth: 5,
               borderColor: "white",
+              gap: 50,
             }}
           >
             {item.name}
