@@ -1,4 +1,5 @@
 import { FlatList, Text, View } from "react-native";
+
 const arr = [
   { id: 1, name: "A" },
   { id: 2, name: "B" },
@@ -6,7 +7,8 @@ const arr = [
   { id: 4, name: "D" },
   { id: 5, name: "E" },
 ];
-export default function FlatList() {
+
+export default function FlatListExample() {
   return (
     <View
       style={{
@@ -15,43 +17,36 @@ export default function FlatList() {
         justifyContent: "center",
       }}
     >
+      <Text></Text>
       <Text
         style={{
           textAlign: "center",
-          fontSize: 50,
+          fontSize: 35,
           color: "orange",
-          justifyContent: "center",
           flex: 1,
+          justifyContent: "center",
         }}
       >
-        Map Array Example:-
+        FlatList Array Example:-
       </Text>
-      {arr.map((item) => (
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: 50,
-            color: "orange",
-            justifyContent: "center",
-            flex: 1,
-          }}
-          key={item.id}
-        >
-          {item.name}
-        </Text>
-      ))}
 
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: 50,
-          color: "orange",
-          justifyContent: "center",
-          flex: 1,
-        }}
-      >
-        Map Array Example:-
-      </Text>
+      <FlatList
+        data={arr}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <Text
+            style={{
+              textAlign: "center",
+              color: "darkorange",
+              fontSize: 40,
+              borderWidth: 5,
+              borderColor: "white",
+            }}
+          >
+            {item.name}
+          </Text>
+        )}
+      />
     </View>
   );
 }
