@@ -28,10 +28,16 @@ export default function ProductScreen() {
     10: 0,
   });
   const increment = (id) => {
-    setQuantities((previous) => ({
-      ...previous,
-      [id]: previous[id] + 1,
-    }));
+    setQuantities((previous) => {
+      if (previous[id] >= 10) {
+        return previous;
+      }
+
+      return {
+        ...previous,
+        [id]: previous[id] + 1,
+      };
+    });
   };
   const decrement = (id) => {
     setQuantities((previous) => {
