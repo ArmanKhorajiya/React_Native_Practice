@@ -1,53 +1,43 @@
-import { useState } from "react";
-import { Button, Text, View } from "react-native";
+import { View, Text, Button } from "react-native";
 
-export default function Counter() {
-  const [count, setCount] = useState(0);
-  const incr = () => {
-    setCount(count + 1);
-  };
-  const five = () => {
-    setCount(count + 5);
-  };
-  const decr = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
-  const reset = () => {
-    setCount(0);
-  };
-
+export default function Counter({ count, incr, decr }) {
   return (
     <View
       style={{
-        flex: 1,
         justifyContent: "center",
-        backgroundColor: "black",
+        alignItems: "center",
+        flexDirection: "row",
+        gap: 20,
       }}
     >
+      <View
+        style={{
+          width: 30,
+          height: 35,
+        }}
+      >
+        <Button title="-" onPress={decr} color={"red"} />
+      </View>
       <Text
         style={{
-          textAlign: "center",
-          fontSize: 150,
-          color: "orange",
+          textAlign: "right",
+          fontSize: 20,
+          width: "auto",
+          height: 22,
+          color: "white",
         }}
       >
         {count}
       </Text>
-      <Text
+
+      <View
         style={{
-          textAlign: "center",
-          color: "red",
-          fontSize: 50,
+          width: 30,
+          height: 35,
         }}
       >
-        {count === 0 ? "Counter is empty" : "Counter is running..."}
-      </Text>
-      <Button onPress={incr} title="Add One" />
-      <Button onPress={decr} title="Remove One" />
-      <Button onPress={five} title="Add Five" />
-      <Button onPress={reset} title="Reset" />
+        <Button title="+" onPress={incr} color={"green"} />
+      </View>
     </View>
   );
 }

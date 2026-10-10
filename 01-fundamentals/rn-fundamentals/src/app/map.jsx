@@ -23,6 +23,7 @@ export default function MapExample() {
       <Text></Text>
       {arr.map((item) => (
         <Text
+          key={item.id}
           style={{
             textAlign: "center",
             fontSize: 30,
