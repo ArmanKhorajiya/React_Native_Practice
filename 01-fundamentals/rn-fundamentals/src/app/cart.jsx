@@ -1,39 +1,55 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
-import { useCart } from "./_layout";
+import { useContext } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 
-export default function Cart() {
-  const { products, quantities } = useCart();
+import { CartContext } from "./cart-context";
 
-  const cartItems = products.filter(
-    (item) => quantities[item.id] > 0
+const products = [
+  { id: 1, name: "Laptop" },
+  { id: 2, name: "Smartphone" },
+  { id: 3, name: "Headphones" },
+  { id: 4, name: "Keyboard" },
+  { id: 5, name: "Mouse" },
+  { id: 6, name: "Monitor" },
+  { id: 7, name: "Smartwatch" },
+  { id: 8, name: "Tablet" },
+  { id: 9, name: "Speaker" },
+  { id: 10, name: "Charger" },
+];
+
+export default function CartScreen() {
+  const { quantities } = useContext(CartContext);
+
+  const cartProducts = products.filter(
+    (product) => quantities[product.id] > 0
   );
 
-  const totalItems = cartItems.reduce(
-    (total, item) => total + quantities[item.id],
+  const totalItems = Object.values(quantities).reduce(
+    (total, quantity) => total + quantity,
     0
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Your Cart</Text>
-      <Text style={styles.subtitle}>{totalItems} item(s) selected</Text>
+      <Text style={styles.heading}>My Cart</Text>
+      <Text style={styles.subtitle}>Total items: {totalItems}</Text>
 
-      {cartItems.length === 0 ? (
-        <View style={styles.emptyCart}>
-          <Text style={styles.emptyTitle}>Your cart is empty</Text>
-          <Text style={styles.emptySubtitle}>
-            Add products from the Flatlist tab.
-          </Text>
-        </View>
+      {cartProducts.length === 0 ? (
+        <Text style={styles.empty}>Your cart is empty.</Text>
       ) : (
         <FlatList
-          data={cartItems}
+          data={cartProducts}
           keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.list}
           renderItem={({ item }) => (
-            <View style={styles.cartCard}>
+            <View style={styles.card}>
               <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.quantityText}>
-                × {quantities[item.id]}
+              <Text style={styles.quantity}>
+                Qty: {quantities[item.id]}
               </Text>
             </View>
           )}
@@ -48,56 +64,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#101827",
     padding: 16,
-    paddingTop: 20,
+    paddingTop: 50,
   },
   heading: {
-    fontSize: 32,
+    color: "white",
+    fontSize: 28,
     fontWeight: "bold",
-    color: "#FFFFFF",
   },
   subtitle: {
-    color: "#9CAEC8",
-    marginTop: 6,
+    color: "#AAB8CC",
+    fontSize: 15,
+    marginTop: 5,
     marginBottom: 20,
   },
-  cartCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+  list: {
+    paddingBottom: 20,
+  },
+  card: {
     backgroundColor: "#1D2D44",
-    borderRadius: 14,
     borderWidth: 1,
     borderColor: "#344761",
-    padding: 16,
+    borderRadius: 12,
+    padding: 18,
     marginBottom: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   productName: {
-    flex: 1,
-    color: "#FFFFFF",
-    fontSize: 17,
+    color: "white",
+    fontSize: 18,
     fontWeight: "600",
   },
-  quantityText: {
-    color: "#FFFFFF",
-    backgroundColor: "#2563EB",
-    overflow: "hidden",
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    borderRadius: 10,
+  quantity: {
+    color: "#75D99A",
+    fontSize: 16,
     fontWeight: "bold",
   },
-  emptyCart: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  emptyTitle: {
-    color: "#FFFFFF",
-    fontSize: 22,
-    fontWeight: "bold",
-  },
-  emptySubtitle: {
-    color: "#9CAEC8",
-    marginTop: 8,
+  empty: {
+    color: "#AAB8CC",
+    fontSize: 16,
+    marginTop: 30,
+    textAlign: "center",
   },
 });
